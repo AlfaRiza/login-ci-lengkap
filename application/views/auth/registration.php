@@ -9,20 +9,26 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                         </div>
-                        <form class="user">
+                        <form class="user" method="post" action="<?= base_url('auth/registration'); ?>">
                             <div class="form-group">
-                                <input type="name" class="form-control form-control-user" id="name" name="name" placeholder="Your Name" autocomplete="off" autofocus >
+                                <input type="name" class="form-control form-control-user" id="name" name="name" placeholder="Your Name" autocomplete="off" autofocus value="<?= set_value('name'); ?>">
+                                <?= form_error('name', '<small class="text-danger">', '</small>'); ?>
                             </div>
 
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address" autocomplete="off">
+                                <input type="email" class="form-control form-control-user" id="email" name="email" placeholder="Email Address" autocomplete="off" value="<?= set_value('email'); ?>">
+                                <?= form_error('email', '<small class="text-danger">', '</small>'); ?>
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
                                     <input type="password" class="form-control form-control-user" id="password1" name="password1" placeholder="Password" autocomplete="off">
+                                    <?= form_error('password1', '<small class="text-danger">', '</small>'); ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="password" class="form-control form-control-user" id="password2" name="password2" placeholder="Repeat Password" autocomplete="off">
+                                </div>
+                                <div class="col-sm-12 pl-4">
+                                    <small class="text-primary">Password min 8 characters</small>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary btn-user btn-block">
