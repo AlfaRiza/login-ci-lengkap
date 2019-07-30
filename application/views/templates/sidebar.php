@@ -6,7 +6,7 @@
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-user-secret"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin<sup><i class="fab fa-affiliatetheme"></i></sup></div>
+                <div class="sidebar-brand-text mx-3">Login-CI<sup><i class="fab fa-affiliatetheme"></i></sup></div>
             </a>
 
             <!-- Divider -->
@@ -40,7 +40,11 @@
                 ?>
                 <!-- sub menu -->
                 <?php foreach ($subMenu as $sm) : ?>
-                    <li class="nav-item">
+                    <?php if ($judul == $sm['title']) : ?>
+                        <li class="nav-item active">
+                        <?php else : ?>
+                        <li class="nav-item">
+                        <?php endif; ?>
                         <a class="nav-link" href="<?= base_url($sm['url']); ?>">
                             <i class="<?= $sm['icon']; ?>"></i>
                             <span><?= $sm['title']; ?></span></a>
