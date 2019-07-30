@@ -2,6 +2,14 @@
 
 class User extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        is_logged_in();
+        // if (!$this->session->userdata('email')) {
+        //     redirect('auth');
+        // }
+    }
     public function index()
     {
         $data['judul'] = 'My Profile';
