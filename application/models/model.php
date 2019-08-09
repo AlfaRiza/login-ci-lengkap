@@ -6,6 +6,14 @@ class model extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+    public function data($tabel)
+    {
+        return $this->db->get($tabel)->result_array();
+    }
+    public function get_where($tabel, $where)
+    {
+        return $this->db->get_where($tabel, $where)->row_array();
+    }
     public function menu()
     {
         return $this->db->get('user_menu')->result_array();
@@ -14,7 +22,13 @@ class model extends CI_Model
     {
         return $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
     }
-    public function getsubdata()
+    public function getSubMenu()
+    {
+        $query = " SELECT `user_sub_menu` . * ,`user_menu`.`menu` FROM `user_sub_menu` JOIN `user_menu` ON `user_sub_menu`.`menu_id` = `user_menu`.`id`
+        ";
+        return $this->db->query($query)->result_array();
+    }
+    public function getSubData()
     {
         return $this->db->get('user_sub_menu')->result_array();
     }

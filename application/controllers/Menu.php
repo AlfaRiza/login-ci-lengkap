@@ -13,7 +13,8 @@ class Menu extends CI_Controller
     public function index()
     {
         $data['judul'] = 'Menu Management';
-        $data['user'] = $this->model->getdata();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+        $data['menu'] = $this->model->data('user_menu');
         // echo 'Selamat datang ' . $data['user']['name'];
         // form validation
         $this->form_validation->set_rules('menu', 'Menu', 'required');
@@ -36,10 +37,11 @@ class Menu extends CI_Controller
     public function submenu()
     {
         $data['judul'] = 'Sub Menu Management';
-        $data['user'] = $this->model->getdata();
-        $data['menu'] = $this->model->menu();
+        $data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
-        $data['subMenu'] =  $this->model->getsubdata();
+
+        $data['subMenu'] =  $this->model->getSubMenu();
+        $data['menu'] = $this->model->data('user_menu');
 
         $this->form_validation->set_rules('title', 'Title', 'required');
         $this->form_validation->set_rules('menu_id', 'Menu', 'required');
@@ -53,11 +55,11 @@ class Menu extends CI_Controller
             $this->load->view('templates/footer');
         } else {
             $data = [
-                $title = $this->input->post('title'),
-                $menu_id = $this->input->post('menu_id'),
-                $url = $this->input->post('url'),
-                $icon = $this->input->post('icon'),
-                $is_active = $this->input->post('is_active')
+                'title' => $this->input->post('title'),
+                'menu_id' => $this->input->post('menu_id'),
+                'url' => $this->input->post('url'),
+                'icon' => $this->input->post('icon'),
+                'is_active' => $this->input->post('is_active')
             ];
             $this->model->insertDB($data, 'user_sub_menu');
             $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">

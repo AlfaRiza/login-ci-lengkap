@@ -5,7 +5,7 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $judul; ?></h1>
 
     <div class="row">
-        <div class="col-lg-10">
+        <div class="col-lg">
             <?php if (validation_errors()) : ?>
                 <div class="alert alert-danger" role="alert">
                     <?= validation_errors(); ?>
@@ -32,7 +32,7 @@
                         <tr>
                             <th scope="row"><?= $i++; ?></th>
                             <td><?= $sm['title'] ?></td>
-                            <td><?= $sm['menu_id'] ?></td>
+                            <td><?= $sm['menu'] ?></td>
                             <td><?= $sm['url'] ?></td>
                             <td> <i class="<?= $sm['icon'] ?>"></i> </td>
                             <td><?= $sm['is_active'] ?></td>
@@ -63,7 +63,7 @@
             <div class="modal-body">
                 <form method="post" action="<?= base_url('menu/submenu') ?>">
                     <div class="form-group">
-                        <input type="text" class="form-control" id="menu" name="menu" placeholder="Sub Menu title">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="Sub Menu title">
                     </div>
                     <div class="form-group">
                         <select name="menu_id" id="menu_id" class="form-control">
