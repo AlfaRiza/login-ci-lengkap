@@ -6,6 +6,12 @@ class model extends CI_Model
     {
         $this->db->insert($table, $data);
     }
+    public function editdata($tabel, $where, $set)
+    {
+        $this->db->set($set[0], $set[1]);
+        $this->db->where($where[0], $where[1]);
+        $this->db->update($tabel);
+    }
     public function data($tabel)
     {
         return $this->db->get($tabel)->result_array();
