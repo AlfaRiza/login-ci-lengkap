@@ -20,6 +20,10 @@ class model extends CI_Model
     {
         return $this->db->get_where($tabel, $where)->row_array();
     }
+    public function delete_data($tabel, $where)
+    {
+        return $this->db->delete($tabel, $where);
+    }
     public function menu()
     {
         return $this->db->get('user_menu')->result_array();
